@@ -12,7 +12,7 @@
      debug:
        msg: "{{ ansible_facts['selinux']['status'] }}"
 
-   - name: Create httpd.out
+   - name: Create se.out
      template:
        src: se.j2
        dest: /tmp/se.out
