@@ -1,5 +1,7 @@
 - name: Server info
   hosts: all
+  vars:
+    test_var: testing
   remote_user: azureuser
   become: yes
   tasks:
@@ -16,3 +18,16 @@
      template:
        src: se.j2
        dest: /tmp/se.out
+
+   - name: creates users files
+     file:
+       path: /tmp/ansible-{{ item }}
+       state: touch
+     loop:
+       - test.conf
+       - test1.conf
+       - test2.conf
+   
+   - name: Create conf
+     template: src=test.conf.j2 dest=/tmp/test.conf
+
